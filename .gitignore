@@ -1,0 +1,17 @@
+# Various junk to skip
+.DS_Store
+*.bs
+*.exe
+*.o
+*.obj
+*~
+.*.swp
+*.bak
+
+# Explicitly skip these generated files
+Config.pm
+Makefile
+Makefile.old
+blib/
+pm_to_blib
+*.tar.gz
