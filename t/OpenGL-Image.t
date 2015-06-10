@@ -40,11 +40,27 @@ $exec = qq
 {
   use Image\::Magick;
   \$im_ver = \$Image::Magick::VERSION;
+  if (!$im_ver)
+  {
+    my \$im = new Image::Magick;
+    \$im_ver = \$im->Get('version');
+  }
 };
 eval($exec);
-if ($@ || !$im_ver)
+my $err = $@;
+
+if ($im_ver =~ m|ImageMagick ([0-9\.]+)|)
 {
-  $t->skip("Image::Magick module not installed: $@") 
+  $im_ver = $1;
+}
+else
+{
+  $im_ver = undef;
+}
+
+if ($err || !$im_ver)
+{
+  $t->skip("Image::Magick module not installed: $err") 
 }
 elsif ($im_ver lt '6.3.5' )
 {

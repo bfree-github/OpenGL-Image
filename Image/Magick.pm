@@ -150,7 +150,11 @@ eval 'use Image::Magick';
 # Get engine version
 sub EngineVersion
 {
-  return $Image::Magick::VERSION;
+  return $Image::Magick::VERSION if ($Image::Magick::VERSION);
+  my $im = new Image::Magick;
+  my $ver = $im->Get('version');
+  return $1 if ($ver =~ m|ImageMagick ([0-9\.]+)|);
+  return undef;
 }
 
 # Get engine description

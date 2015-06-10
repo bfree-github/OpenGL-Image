@@ -19,7 +19,7 @@ use warnings;
 use Carp;
 
 use vars qw($VERSION @ISA);
-$VERSION = '1.03';
+$VERSION = '1.04';
 
 @ISA = qw(Exporter);
 
